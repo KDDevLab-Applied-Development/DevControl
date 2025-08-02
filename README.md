@@ -76,5 +76,13 @@ devcontrol/
 
 ---
 
+## 📝 Lizenz
+
+Dieses Projekt unterliegt einer benutzerdefinierten Lizenz.  
+Details findest du in der Datei [LICENSE.md](./LICENSE.md).  
+**Eine Nutzung oder Verbreitung ist nur mit ausdrücklicher Genehmigung erlaubt.**
+
+---
+
 ⏳ Dieses Dokument wird regelmäßig überarbeitet.
 Letzte Bearbeitung: 01.08.2025
