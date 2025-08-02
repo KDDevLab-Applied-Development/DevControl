@@ -2,7 +2,7 @@
 
 > 📌 Hinweis: Dieses Repository ist **öffentlich einsehbar**, aber **nicht Open Source**.  
 > Eine **Nutzung, Veränderung oder Weitergabe ist ausschließlich mit schriftlicher Genehmigung** des Eigentümers erlaubt.
-
+> Der Inhalt dieses README ist **nicht final** und wird regelmäßig erweitert.
 ---
 
 ## 🧠 Was ist DevControl?
@@ -73,3 +73,8 @@ devcontrol/
 - Swagger/OpenAPI im Backend integriert
 - Postman-Collection verfügbar im Ordner /docs/postman/
 - Authentifizierungsfluss dokumentiert via JWT
+
+---
+
+⏳ Dieses Dokument wird regelmäßig überarbeitet.
+Letzte Bearbeitung: 01.08.2025
