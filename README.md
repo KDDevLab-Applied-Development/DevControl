@@ -1,8 +1,5 @@
 # 🚀 Project Name: DevControl – Fullstack Web Platform for Self-Hosted DevOps Tools
 
-> 📌 Hinweis: Dieses Repository ist **öffentlich einsehbar**, aber **nicht Open Source**.  
-> Eine **Nutzung, Veränderung oder Weitergabe ist ausschließlich mit schriftlicher Genehmigung** des Eigentümers erlaubt.
-> Der Inhalt dieses README ist **nicht final** und wird regelmäßig erweitert.
 ---
 
 ## 🧠 Was ist DevControl?
@@ -74,7 +71,16 @@ devcontrol/
 - Postman-Collection verfügbar im Ordner /docs/postman/
 - Authentifizierungsfluss dokumentiert via JWT
 
+
 ---
+
+## 📌 Hinweis
+> 📌 Hinweis: Dieses Repository ist **öffentlich einsehbar**, aber **nicht Open Source**.  
+> Eine **Nutzung, Veränderung oder Weitergabe ist ausschließlich mit schriftlicher Genehmigung** des Eigentümers erlaubt.  
+> Der Inhalt dieses README ist **nicht final** und wird regelmäßig erweitert.
+
+---
+
 
 ## 📝 Lizenz
 Dieses Projekt unterliegt einer benutzerdefinierten Lizenz.  
