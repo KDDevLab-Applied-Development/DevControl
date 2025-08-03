@@ -15,4 +15,4 @@ Der Code wird ohne jegliche Garantie zur Verfügung gestellt. Nutzung auf eigene
 
 ## Kontakt:
 Für Anfragen zur Lizenzierung oder Nutzung:  
-📧 [deine.email@example.com]
+📧 [Darcankursat@gmail.com]
