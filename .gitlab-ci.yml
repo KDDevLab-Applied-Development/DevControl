@@ -1,0 +1,114 @@
+stages:
+  - build
+  - test
+  - security
+  - deploy
+
+variables:
+  MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  NODE_VERSION: "20"
+  JAVA_VERSION: "17"
+
+cache:
+  paths:
+    - .m2/repository/
+    - Frontend/devcontrol-frontend/node_modules/
+
+# Build Stage
+build-frontend:
+  stage: build
+  image: node:${NODE_VERSION}-alpine
+  before_script:
+    - cd Frontend/devcontrol-frontend
+    - npm ci
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - Frontend/devcontrol-frontend/dist/
+    expire_in: 1 hour
+
+build-backend:
+  stage: build
+  image: openjdk:${JAVA_VERSION}-jdk-alpine
+  before_script:
+    - cd Backend/devcontrol-backend
+  script:
+    - ./mvnw clean compile
+  artifacts:
+    paths:
+      - Backend/devcontrol-backend/target/
+    expire_in: 1 hour
+
+# Test Stage
+test-frontend:
+  stage: test
+  image: node:${NODE_VERSION}-alpine
+  before_script:
+    - cd Frontend/devcontrol-frontend
+    - npm ci
+  script:
+    - npm run test:ci
+    - npm run lint
+  coverage: '/Lines.*?(\d+(?:\.\d+)?)%/'
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: Frontend/devcontrol-frontend/coverage/cobertura-coverage.xml
+
+test-backend:
+  stage: test
+  image: openjdk:${JAVA_VERSION}-jdk-alpine
+  before_script:
+    - cd Backend/devcontrol-backend
+  script:
+    - ./mvnw test
+  artifacts:
+    reports:
+      junit:
+        - Backend/devcontrol-backend/target/surefire-reports/TEST-*.xml
+
+# Security Stage
+security-scan:
+  stage: security
+  image: owasp/dependency-check:latest
+  script:
+    - /usr/share/dependency-check/bin/dependency-check.sh --scan . --format XML --out dependency-check-report.xml
+  artifacts:
+    reports:
+      dependency_scanning: dependency-check-report.xml
+
+# Deploy Stage (Development)
+deploy-dev:
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - docker-compose --version
+  script:
+    - cd docker
+    - docker-compose down
+    - docker-compose up -d --build
+  environment:
+    name: development
+    url: http://localhost:4200
+  only:
+    - develop
+
+# Deploy Stage (Production)
+deploy-prod:
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - echo "Deploy to production"
+    # Add production deployment commands here
+  environment:
+    name: production
+  only:
+    - main
+  when: manual

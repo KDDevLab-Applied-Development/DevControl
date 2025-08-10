@@ -1,0 +1,96 @@
+# DevControl Project Root .gitignore
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*~
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Backup files
+*.bak
+*.backup
+*.orig
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Documentation build files
+docs/build/
+
+# Scripts temporary files
+scripts/temp/
+scripts/*.tmp
+
+# Database dumps
+*.sql
+*.dump
+
+# SSL certificates and keys
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# Configuration overrides
+config/local/
+config/override/
+
+# Test coverage reports
+coverage/
+test-results/
+
+# Node.js (in case of additional tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local development files
+local/
+dev-local/
+
+# Build artifacts
+build/
+dist/
+target/
+
+# Secrets and sensitive data
+secrets/
+.secrets
+*.secret

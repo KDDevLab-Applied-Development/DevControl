@@ -1,0 +1,41 @@
+# Docker specific ignores
+
+# Override files
+docker-compose.override.yml
+docker-compose.local.yml
+
+# Environment files
+.env
+.env.local
+.env.dev
+.env.prod
+
+# Database data (if volumes are local)
+postgres-data/
+mysql-data/
+mongo-data/
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# Backup files
+backup/
+*.sql
+*.dump
+*.backup
+
+# SSL certificates
+ssl/
+certs/
+*.pem
+*.key
+*.crt
+
+# Init scripts (if they contain sensitive data)
+init-db/local/
+init-db/secrets/

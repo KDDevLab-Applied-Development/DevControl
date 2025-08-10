@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: devcontrol-postgres
+    environment:
+      POSTGRES_DB: devcontrol
+      POSTGRES_USER: devcontrol_user
+      POSTGRES_PASSWORD: devcontrol_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db:/docker-entrypoint-initdb.d
+    networks:
+      - devcontrol-network
+
+  # Spring Boot Backend
+  backend:
+    build:
+      context: ../Backend/devcontrol-backend
+      dockerfile: Dockerfile
+    container_name: devcontrol-backend
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/devcontrol
+      SPRING_DATASOURCE_USERNAME: devcontrol_user
+      SPRING_DATASOURCE_PASSWORD: devcontrol_password
+    ports:
+      - "8080:8080"
+    networks:
+      - devcontrol-network
+
+  # Angular Frontend
+  frontend:
+    build:
+      context: ../Frontend/devcontrol-frontend
+      dockerfile: Dockerfile
+    container_name: devcontrol-frontend
+    depends_on:
+      - backend
+    ports:
+      - "4200:4200"
+    networks:
+      - devcontrol-network
+
+volumes:
+  postgres_data:
+
+networks:
+  devcontrol-network:
+    driver: bridge
